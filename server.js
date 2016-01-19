@@ -18,7 +18,8 @@ io.on('connection', function(socket) {
       socket.leave(userData.room);
       io.to(userData.room).emit('message', {
         name: 'Turing bot',
-        text: userData.name + ' has left!'
+        text: userData.name + ' has left!',
+        timestamp: moment().valueOf()
       });
     }
   });
