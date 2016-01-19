@@ -28,6 +28,5 @@ describe('server.js', function () {
       .post('/')
       .expect(500, done);
   });
-
 });
 
