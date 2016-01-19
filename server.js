@@ -32,6 +32,22 @@ function sendCurrentUsers(socket) {
   });
 }
 
+function sendCurrentChannels(socket) {
+  var channels = [];
+
+  Object.keys(clientInfo).forEach(function(socketId) {
+    var channelInfo = clientInfo[socketId];
+
+    channels.push(channelInfo.room);
+
+    socket.emit('message', {
+      name: 'Turing bot',
+      text: 'Current Channels: ' + channels.join(', '),
+      timestamp: moment().valueOf()
+    });
+  });
+}
+
 io.on('connection', function(socket) {
   socket.on('disconnect', function() {
     var userData = clientInfo[socket.id];
@@ -59,6 +75,8 @@ io.on('connection', function(socket) {
   socket.on('message', function(message) {
     if (message.text === '@currentUsers') {
       sendCurrentUsers(socket);
+    } else if (message.text === '@currentChannels') {
+      sendCurrentChannels(socket);
     } else {
       message.timestamp = moment().valueOf();
       io.to(clientInfo[socket.id].room).emit('message', message);
