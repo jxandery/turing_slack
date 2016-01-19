@@ -13,11 +13,12 @@ io.on('connection', function(socket) {
   console.log('User connected via socket.io!');
 
   socket.on('disconnect', function() {
-    if (typeof clientInfo[socket.id] !== 'undefined') {
-      socket.leave(clientInfo[socket.id]);
-      io.to(clientInfo[socket.id].room).emit('message', {
+    var userData = clientInfo[socket.id];
+    if (typeof userData !== 'undefined') {
+      socket.leave(userData.room);
+      io.to(userData.room).emit('message', {
         name: 'Turing bot',
-        text: clientInfo[socket.id].name + ' has left!'
+        text: userData.name + ' has left!'
       });
     }
   });
