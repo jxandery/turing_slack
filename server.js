@@ -18,7 +18,8 @@ io.on('connection', function(socket) {
   });
 
   socket.emit('message', {
-    text: 'Welcome to the chat application!',
+    name: 'Turing bot',
+    text: 'Welcome to the Turing chat application!',
     timestamp: moment().valueOf()
   });
 });
