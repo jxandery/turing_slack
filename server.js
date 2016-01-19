@@ -15,6 +15,7 @@ io.on('connection', function(socket) {
     socket.broadcast.to(req.room).emit('message', {
       name: 'Turing bot',
       text: req.name + ' has joined #' + req.room,
+      timestamp: moment().valueOf()
     });
   });
 
