@@ -14,3 +14,4 @@ http.listen(PORT, function() {
   console.log('Server started!');
 });
 
+module.exports = app
