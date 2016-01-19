@@ -10,6 +10,14 @@ app.use(express.static(__dirname + '/public'));
 io.on('connection', function(socket) {
   console.log('User connected via socket.io!');
 
+  socket.on('joinRoom', function(req){
+    socket.join(req.room);
+    socket.broadcast.to(req.room).emit('message', {
+      name: 'Turing bot',
+      text: req.name + ' has joined #' + req.room,
+    });
+  });
+
   socket.on('message', function(message) {
     console.log('Message received: ' + message.text);
 
