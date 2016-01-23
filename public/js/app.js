@@ -19,6 +19,11 @@ socket.on('message', function(message) {
   $message.append('<p><strong>' + message.name + ' ' + momentTimestamp.local().format('h:mm a') + '</strong>: </p>');
   $message.append('<p>' + message.text + '</p>');
   $messages.append($message);
+
+  var $users = jQuery('.users');
+  message.users.forEach(function(user) {
+    $users.append('<li class="list-group-user">' + user + '</li>');
+  });
 });
 
 var $form = jQuery('#message-form');

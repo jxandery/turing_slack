@@ -24,18 +24,19 @@ function sendCurrentUsers(socket) {
       users.push(userInfo.name);
     }
 
-    var $users = jQuery('.users');
+    //var $users = jQuery('.users');
     //var $user = jQuery('<li class="list-group-user"></li>');
 
-    users.forEach(function(user) {
-      $users.append('<li class="list-group-user">' + user + '</li>');
-    });
+    //users.forEach(function(user) {
+      //$users.append('<li class="list-group-user">' + user + '</li>');
+    //});
     //$user.append(users.join);
-    //socket.emit('message', {
+    socket.emit('message', {
     //name: 'Turing bot',
     //text: 'Current Users: ' + users.join(', '),
     //timestamp: moment().valueOf()
-    //});
+      currentUsers: users
+    });
   });
 }
 
